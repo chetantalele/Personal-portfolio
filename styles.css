@@ -1,0 +1,834 @@
+/* === Global Styles & Variables === */
+/* === Global Styles & Variables === */
+:root {
+    --primary-color: #4a90e2; /* Example: Blue */
+    --primary-color-rgb: 74, 144, 226; /* RGB for Blue */
+    --secondary-color: #50e3c2; /* Example: Teal */
+    --secondary-color-rgb: 80, 227, 194; /* RGB for Teal */
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --heading-color: #222;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --navbar-height: 70px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--navbar-height); /* Offset for fixed navbar */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+/* Underline effect for section titles */
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section:nth-child(odd) {
+ /* Slightly different background for visual separation */
+ /* background-color: #e9ecef; */
+}
+
+/* === Buttons === */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    margin: 5px;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 2px solid var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+
+/* === Navigation Bar === */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--heading-color);
+}
+.nav-logo:hover {
+    color: var(--primary-color);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu li {
+    margin-left: 25px;
+}
+
+.nav-menu a {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active { /* Add .active class via JS for current section */
+    color: var(--primary-color);
+}
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--heading-color);
+}
+
+
+/* === Hero Section === */
+/* === Hero Section === */
+.hero {
+    min-height: 100vh; /* Use min-height instead of height for flexibility */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Keep your existing background or adjust as needed */
+    background-color: var(--background-color); /* Or your gradient/image */
+    color: var(--heading-color);
+    padding-top: var(--navbar-height); /* Prevent content overlap */
+    position: relative; /* Needed for absolute positioning of pseudo-elements */
+    overflow: hidden; /* Prevents shapes sticking out and causing scrollbars */
+    z-index: 0; /* Base stacking context */
+}
+
+/* Ensure hero content is above the pseudo-elements */
+.hero-content {
+    position: relative; /* Position relative to allow z-index */
+    z-index: 2; /* Make sure content is above pseudo-elements */
+}
+
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-content .subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+.hero-content .highlight {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* --- Subtle Background Shapes --- */
+
+.hero::before,
+.hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Organic blob shape */
+    z-index: 1; /* Place shapes between background and content */
+    opacity: 0.1; /* Make them very subtle */
+    animation: morph 8s ease-in-out infinite both alternate; /* Gentle animation */
+}
+
+/* Shape 1 (using ::before) */
+.hero::before {
+    width: 45%; /* Relative size */
+    padding-bottom: 45%; /* Maintain aspect ratio (makes it roughly square) */
+    background: rgba(var(--primary-color-rgb), 0.8); /* Use primary color, slightly less transparent */
+    left: -15%; /* Position partially off-screen */
+    top: 10%;
+    animation-duration: 10s; /* Slightly different timing */
+}
+
+/* Shape 2 (using ::after) */
+.hero::after {
+    width: 35%;
+    padding-bottom: 35%;
+    background: rgba(var(--secondary-color-rgb), 0.8); /* Use secondary color */
+    right: -10%;
+    bottom: 5%;
+    animation-duration: 7s; /* Different timing */
+    opacity: 0.12; /* Slightly different opacity */
+}
+
+/* Keyframes for the morphing animation */
+@keyframes morph {
+    0% {
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        border-radius: 70% 30% 40% 60% / 60% 50% 50% 40%;
+        transform: rotate(5deg) scale(1.05);
+    }
+}
+
+/* --- Optional: Adjust shapes on smaller screens --- */
+@media (max-width: 767px) {
+    .hero::before {
+        width: 60%;
+        padding-bottom: 60%;
+        left: -25%;
+        top: 5%;
+        opacity: 0.08; /* Make even more subtle on mobile */
+    }
+
+    .hero::after {
+        width: 50%;
+        padding-bottom: 50%;
+        right: -20%;
+        bottom: 2%;
+         opacity: 0.1;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem; /* Adjust heading size if needed */
+    }
+}
+
+/* --- Ensure Hero content styling is still applied --- */
+/* (The original styles for h1, p, highlight, buttons remain the same) */
+
+/* === About Section === */
+.about-section {
+    background-color: var(--card-bg); /* White background for contrast */
+}
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 300px; /* Adjust size as needed */
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 5px solid var(--primary-color);
+}
+
+.about-text {
+    flex: 2;
+}
+
+
+/* === Skills Section === */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.skill-item {
+    background-color: var(--card-bg);
+    padding: 20px 15px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    font-weight: 500;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.skill-item i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+
+/* === Education & Internships (Timeline) === */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* The vertical line */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--primary-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+/* Circle on the timeline */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: white;
+    border: 4px solid var(--primary-color);
+    top: 25px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Place items to the left */
+.timeline-item:nth-child(odd) {
+    left: 0;
+    padding-right: 60px; /* Space from center line */
+    text-align: right; /* Align text to the right */
+}
+
+/* Place items to the right */
+.timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: 60px; /* Space from center line */
+    text-align: left; /* Align text to the left */
+}
+
+/* Adjust the circle position for left/right items */
+.timeline-item:nth-child(odd)::after {
+    left: auto;
+    right: -10px;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -10px;
+    right: auto;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: var(--card-bg);
+    position: relative;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.timeline-content h3 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content .institution {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #555;
+}
+
+.timeline-content .date {
+    font-size: 0.9rem;
+    color: #777;
+    display: block;
+    margin-bottom: 0.8rem;
+}
+.timeline-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-top: 0.8rem;
+    text-align: left; /* Ensure list items are left-aligned */
+}
+.timeline-content ul li {
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+}
+
+/* === Projects Section === */
+.projects-section {
+     background-color: var(--card-bg); /* White background */
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: #fff; /* Use card bg if section bg is different */
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px; /* Adjust as needed */
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 20px;
+    flex-grow: 1; /* Ensure info takes available space */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-info h3 {
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+}
+
+.project-info p {
+    font-size: 0.95rem;
+    flex-grow: 1; /* Push links to bottom */
+}
+.project-info .tech-stack {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.project-links {
+    margin-top: auto; /* Push links to bottom */
+    padding-top: 10px; /* Space above links */
+}
+
+.project-links .btn {
+    margin-right: 10px;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+}
+.project-links .btn i {
+    margin-right: 5px;
+}
+
+/* Style for the new metadata paragraph in project cards */
+.project-info .project-meta {
+    font-size: 0.85rem; /* Smaller font size */
+    color: #666;       /* Grey color for less emphasis */
+    margin-bottom: 0.8rem; /* Space below metadata */
+    display: flex;       /* Use flexbox for alignment */
+    flex-wrap: wrap;     /* Allow wrapping on small screens */
+    gap: 5px 15px;       /* Space between items (row gap, column gap) */
+    align-items: center; /* Vertically align items */
+}
+
+/* Style for the individual date and team size spans */
+.project-info .project-meta span {
+   display: inline-flex; /* Make span behave like flex container */
+   align-items: center; /* Align icon and text vertically */
+   gap: 5px;           /* Space between icon and text */
+}
+
+/* Style for the icons within the metadata */
+.project-info .project-meta i {
+    color: var(--primary-color); /* Use primary color for icons */
+    opacity: 0.8;              /* Slightly less opaque */
+     /* Adjust icon size if needed */
+    /* font-size: 0.9em; */
+}
+
+/* Optional: Ensure project description still has margin */
+.project-info p:not(.project-meta):not(.tech-stack) {
+    margin-bottom: 1rem; /* Keep default margin for description */
+}
+/* === Achievements Section === */
+.achievements-list {
+    max-width: 800px;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.achievements-list li {
+    background-color: var(--card-bg);
+    padding: 15px 20px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    font-size: 1.05rem;
+}
+
+.achievements-list i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-right: 15px;
+    width: 25px; /* Align text */
+    text-align: center;
+}
+
+
+/* === Contact Section === */
+.contact-section {
+    text-align: center;
+    background-color: #e9ecef; /* Slightly different background */
+}
+
+.contact-info {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.contact-info a {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.contact-info a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    color: var(--primary-color);
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    font-size: 1.4rem;
+}
+
+
+/* === Footer === */
+.footer {
+    background-color: var(--heading-color);
+    color: #ccc;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px; /* Space before footer */
+    font-size: 0.9rem;
+}
+
+/* === Responsiveness === */
+
+/* Tablets and smaller desktops */
+@media (max-width: 992px) {
+    h2 { font-size: 2.2rem; }
+    .hero-content h1 { font-size: 3rem; }
+    .hero-content .subtitle { font-size: 1.3rem; }
+    .about-container { flex-direction: column; text-align: center; }
+    .about-image img { max-width: 250px; margin-bottom: 2rem; }
+    .timeline::after { left: 30px; } /* Move line to the left */
+    .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; text-align: left;} /* Full width items */
+    .timeline-item:nth-child(odd), .timeline-item:nth-child(even) { left: 0; }
+    .timeline-item::after { left: 10px; } /* Adjust circle position */
+}
+
+/* Mobile devices */
+@media (max-width: 767px) {
+    :root { --navbar-height: 60px; } /* Slightly smaller navbar */
+
+    h2 { font-size: 1.8rem; margin-bottom: 2rem;}
+    .section { padding: 60px 0; }
+
+    /* Mobile Navigation */
+    .nav-menu {
+        display: none; /* Hide menu items */
+        position: absolute;
+        top: var(--navbar-height);
+        left: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding-bottom: 10px;
+    }
+    .nav-menu.active {
+        display: flex; /* Show when active */
+    }
+    .nav-menu li {
+        margin: 15px 0;
+    }
+    .hamburger {
+        display: block; /* Show hamburger icon */
+    }
+
+    .hero { height: auto; padding: 100px 0 60px 0; } /* Adjust hero padding */
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content .subtitle { font-size: 1.1rem; }
+    .btn { padding: 10px 20px; font-size: 0.9rem; }
+
+    .about-image img { max-width: 200px; }
+
+    .skills-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; }
+    .skill-item { padding: 15px 10px; }
+    .skill-item i { font-size: 2rem; }
+
+    /* Timeline adjustments for mobile */
+    .timeline::after { left: 20px; }
+    .timeline-item { padding-left: 50px; padding-right: 15px;}
+    .timeline-item::after { left: 10px; width: 16px; height: 16px; right: auto; border-width: 3px;}
+    .timeline-content { padding: 15px 20px; }
+
+    .projects-grid { grid-template-columns: 1fr; } /* Stack projects */
+
+    .achievements-list li { font-size: 0.95rem; padding: 12px 15px;}
+    .achievements-list i { font-size: 1.3rem; margin-right: 10px; }
+
+    .contact-info { flex-direction: column; align-items: center; gap: 1rem;}
+    .contact-info a { width: 80%; justify-content: center; }
+
+}
+/* === Internships / Experience Section (Card Style) === */
+.internships-section {
+    background-color: var(--card-bg); /* Match project section or choose */
+}
+
+.experience-grid {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); */ /* Uncomment if you want multiple cards per row */
+    grid-template-columns: 1fr; /* Default to one card per row */
+    gap: 2rem;
+    max-width: 800px; /* Constrain width for single card view */
+    margin: 0 auto; /* Center the grid/card */
+}
+
+.experience-card {
+    background-color: #fff; /* Or var(--card-bg) */
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--primary-color); /* Accent border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.experience-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.experience-card .institution,
+.experience-card .date {
+    color: #555;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    display: flex; /* Align icon and text */
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+}
+
+.experience-card .institution i,
+.experience-card .date i {
+    color: var(--primary-color);
+    opacity: 0.8;
+}
+
+.experience-card .location {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #777;
+    margin-left: 5px;
+}
+
+
+.experience-card .responsibilities {
+    list-style: disc;
+    margin-left: 20px; /* Indent list */
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.experience-card .responsibilities li {
+    margin-bottom: 0.5rem;
+}
+
+.experience-card .skills-used {
+    font-size: 0.9rem;
+    color: #444;
+    margin-top: 1rem;
+    display: flex; /* Align icon and text */
+    align-items: center;
+    gap: 8px;
+}
+
+.experience-card .skills-used i {
+    color: var(--primary-color);
+}
+
+/* Responsive adjustments if needed */
+@media (max-width: 767px) {
+    .experience-card {
+        padding: 20px;
+    }
+    .experience-card h3 {
+        font-size: 1.3rem;
+    }
+    /* Adjust font sizes if needed */
+}
+
+/* --- Remove or Comment Out Old Timeline Styles --- */
+/* If you are no longer using the timeline anywhere else,
+   you can safely remove the styles for:
+   .timeline, .timeline::after, .timeline-item, .timeline-item::after,
+   .timeline-item:nth-child(odd), .timeline-item:nth-child(even),
+   .timeline-content
+   (And their associated media query adjustments)
+   Otherwise, just leave them if other sections use them.
+*/
